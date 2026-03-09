@@ -43,3 +43,14 @@ Use Mintlify's built-in components for consistent formatting. See https://www.mi
 - Don't remove existing pages without checking for inbound links
 - Don't use HTML when an MDX component exists for the same purpose
 - Don't add pages to navigation that don't exist yet
+
+## Cursor Cloud specific instructions
+
+This is a Mintlify documentation starter kit (no `package.json`, no backend, no database). The only dependency is the `mint` CLI installed globally via npm.
+
+- **Dev server**: `mint dev` (serves at `http://localhost:3000`). Use `--port <N>` for a custom port.
+- **Lint/link check**: `mint broken-links` — validates internal links across all MDX pages.
+- **Update CLI**: `npm i -g mint` refreshes to the latest version.
+- The dev server may briefly show an error on first load while it compiles; a page refresh resolves it.
+- There are no automated test suites, build steps, or CI pipelines in this repo. Manual browser verification via `mint dev` is the primary testing method.
+- `docs.json` is the Mintlify configuration file; all navigation structure lives there.
