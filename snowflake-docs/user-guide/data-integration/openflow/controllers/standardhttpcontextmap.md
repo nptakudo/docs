@@ -1,0 +1,46 @@
+---
+title: "StandardHttpContextMap"
+url: "https://docs.snowflake.com/en/user-guide/data-integration/openflow/controllers/standardhttpcontextmap"
+---
+
+# StandardHttpContextMap
+
+Feature — Generally Available
+
+Openflow Snowflake Deployments are available to all accounts in AWS and Azure [Commercial regions](../../../intro-regions.html#label-na-general-regions).
+
+Openflow BYOC deployments are available to all accounts in AWS [Commercial regions](../../../intro-regions.html#label-na-general-regions).
+
+## Description
+
+Provides the ability to store and retrieve HTTP requests and responses external to a Processor, so that multiple Processors can interact with the same HTTP request.
+
+## Tags
+
+http, request, response
+
+## Properties
+
+In the list below required Properties are shown with an asterisk (\*).
+Other properties are considered optional. The table also indicates any default values, and whether a property supports the NiFi Expression Language.
+
+| Display Name | API Name | Default Value | Allowable Values | Description |
+| --- | --- | --- | --- | --- |
+| Maximum Outstanding Requests \* | Maximum Outstanding Requests | 5000 |  | The maximum number of HTTP requests that can be outstanding at any one time. Any attempt to register an additional HTTP Request will cause an error |
+| Request Expiration \* | Request Expiration | 1 min |  | Specifies how long an HTTP Request should be left unanswered before being evicted from the cache and being responded to with a Service Unavailable status code |
+
+See moreShow less
+
+Expand
+
+## State management
+
+This component does not store state.
+
+## Restricted
+
+This component is not restricted.
+
+## System Resource Considerations
+
+This component does not specify system resource considerations.

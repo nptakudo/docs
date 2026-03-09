@@ -1,0 +1,32 @@
+---
+title: "ConfluentEncodedSchemaReferenceReader"
+url: "https://docs.snowflake.com/en/user-guide/data-integration/openflow/controllers/confluentencodedschemareferencereader"
+---
+
+# ConfluentEncodedSchemaReferenceReader
+
+Feature — Generally Available
+
+Openflow Snowflake Deployments are available to all accounts in AWS and Azure [Commercial regions](../../../intro-regions.html#label-na-general-regions).
+
+Openflow BYOC deployments are available to all accounts in AWS [Commercial regions](../../../intro-regions.html#label-na-general-regions).
+
+## Description
+
+Reads Schema Identifier according to Confluent encoding as a header consisting of a byte marker and an integer represented as four bytes
+
+## Tags
+
+avro, confluent, kafka, registry, schema
+
+## State management
+
+This component does not store state.
+
+## Restricted
+
+This component is not restricted.
+
+## System Resource Considerations
+
+This component does not specify system resource considerations.

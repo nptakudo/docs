@@ -1,0 +1,198 @@
+---
+title: "Configure organizational listings"
+url: "https://docs.snowflake.com/en/user-guide/collaboration/listings/organizational/org-listing-configure"
+---
+
+# Configure organizational listings
+
+This page introduces configurations for organizational listings in Snowflake. You’ll find details on targeting accounts, adding roles, access regions, and auto-fulfillment settings.
+
+## Set the Uniform Listing Locator or listing name
+
+The Uniform Listing Locator (ULL) is a unique identifier that represents the listing and its data product, treating them as one.
+The listing name is different from the title of the listing: multiple listings can have the same title, but each listing must have
+a unique listing name or ULL. The complete ULL is formed by three elements delimited by the symbol ‘$’.
+The first element is the provider’s organization name, the second element is the provider profile
+`INTERNAL`, and the third element is the listing name. The ULL cannot be changed after the listing is published.
+Although it has three parts, the ULL is treated as a single name in queries. For example, you can query a table in a listing like this:
+
+CopyExpand
+
+```
+SELECT * FROM "ORGDATACLOUD$INTERNAL$MY_LISTING_NAME_123".PUBLIC.TABLE_FROM_LISTING;
+```
+
+Show lessSee more
+
+Scroll to top
+
+When creating a listing, give it a clear, descriptive name. Consumers can find listings faster by name rather than title,
+and a descriptive name is easier to use in queries.
+
+## Set who can discover and access an organizational listing
+
+The target audience of your organizational listings is always your internal marketplace.
+
+Despite the restrictions of an internal listing, you can still control who can discover and access the listing.
+You can mark each listing discoverable and accessible individually. That is, you can configure a listing so that it is discoverable but not accessible.
+
+In general you can specify access or discovery at the following levels:
+
+* Everyone in your account
+* Specific accounts
+* Specific accounts, but limited by specific roles
+
+For example the `access` element defines who can access a listing.
+Likewise, the `discovery` element defines who can discover a listing.
+
+Allow all accounts to access the listing.
+
+CopyExpand
+
+```
+organization_targets:
+   access:
+   - all_accounts : true
+```
+
+Show lessSee more
+
+Scroll to top
+
+Allow specific accounts to access the listing.
+
+CopyExpand
+
+```
+organization_targets:
+   access:
+   - account: 'Account1'
+   - account: 'Account2'
+```
+
+Show lessSee more
+
+Scroll to top
+
+Allow specific accounts to access the listing, but only for the given roles.
+
+CopyExpand
+
+```
+organization_targets:
+   access:
+      - account: 'Account1'
+         roles: [<role1>, <role2>, <role3>]
+```
+
+Show lessSee more
+
+Scroll to top
+
+Allow all accounts to discover the listing.
+
+CopyExpand
+
+```
+organization_targets:
+   discovery:
+   - all_accounts : true
+```
+
+Show lessSee more
+
+Scroll to top
+
+Allow specific accounts to discover the listing.
+
+CopyExpand
+
+```
+organization_targets:
+   discovery:
+   - account: 'Account1'
+   - account: 'Account2'
+```
+
+Show lessSee more
+
+Scroll to top
+
+Allow specific accounts to discover the listing, but only for the given roles.
+
+CopyExpand
+
+```
+organization_targets:
+   discovery:
+      - account: 'Account1'
+         roles: [<role1>, <role2>, <role3>]
+```
+
+Show lessSee more
+
+Scroll to top
+
+In a similar way, regions are set up the access regions\_attribute:
+
+CopyExpand
+
+```
+locations:
+  access_regions:
+     - name: "ALL"
+```
+
+Show lessSee more
+
+Scroll to top
+
+CopyExpand
+
+```
+locations:
+   access_regions:
+     - name: "AWS_US_WEST_2"
+     - name: "AZURE_CENTRALINDIAUS-EAST"
+```
+
+Show lessSee more
+
+Scroll to top
+
+## Specify approver and support contact
+
+Optionally, you can specify an email address or link to internal ticketing system for both approver and support contact.
+
+CopyExpand
+
+```
+support_contact: "support@somedomain.com"
+approver_contact: "approver@somedomain.com"
+```
+
+Show lessSee more
+
+Scroll to top
+
+## Set auto-fulfillment options for an organizational listing
+
+Organizational listings that have attached data shares and apps both use auto-fulfillment, however they each
+use different methods. For this reason, the refresh schedules for each are different. For shares, the refresh
+schedule is set on the database level. For apps, it’s set on the account level.
+
+If you need to use auto-fulfillment, you can set it when your run `CREATE ORGANIZATIONAL LISTING` OR
+`ALTER LISTING` by changing the auto\_fulfillment attribute in the [listing manifest
+fields](https://other-docs.snowflake.com/en/sql-reference/sql/create-listing#parameters).
+
+CopyExpand
+
+```
+auto_fulfillment:
+   refresh_type: SUB_DATABASE
+   refresh_schedule: '10 MINUTE'
+```
+
+Show lessSee more
+
+Scroll to top
